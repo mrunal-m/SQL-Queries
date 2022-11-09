@@ -1,3 +1,4 @@
+--ts query for dcewjhefbie
 MERGE `maximal-furnace-783.data_platform_temp1.sess_hrly_copy_9_10jun22` t USING
 (
 with t1 as (
