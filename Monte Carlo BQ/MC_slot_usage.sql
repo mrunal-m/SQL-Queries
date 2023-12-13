@@ -6,3 +6,14 @@ AND user_email = "monte-carlo@prj-sc-p-montecarlo-service.iam.gserviceaccount.co
 AND error_result.reason IS NULL
 group by 1, 2
 order by 1, 2, 3 desc
+
+----------
+
+SELECT date(creation_time, "Asia/Kolkata") as dt,
+COUNT(*) as count,
+SUM(total_slot_ms)/(1000*60*60*24) as slot_day, 
+from `region-us`.INFORMATION_SCHEMA.JOBS_BY_ORGANIZATION
+WHERE date(creation_time, "Asia/Kolkata") >="2023-11-21"
+AND user_email = "monte-carlo@prj-sc-p-montecarlo-service.iam.gserviceaccount.com"
+GROUP BY 1
+ORDER BY 1 ASC 
