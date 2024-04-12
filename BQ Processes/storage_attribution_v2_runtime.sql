@@ -2,7 +2,7 @@
  --AS 
  (
 WITH t1 as
-((SELECT distinct * from  maximal-furnace-783.data_platform_temp1.storage_attribution_temp_23Feb2024 a
+((SELECT distinct * from  maximal-furnace-783.data_platform_temp1.storage_attribution_v1 a
 WHERE a.team_name IS NOT  NULL
 ORDER BY 7 desc)
 
@@ -14,7 +14,7 @@ a.dataset_id,
 a.table_id,
 b.team_name,
 a.pod,
-a.est_monthly_cost from  maximal-furnace-783.data_platform_temp1.storage_attribution_temp_23Feb2024 a
+a.est_monthly_cost from  maximal-furnace-783.data_platform_temp1.storage_attribution_v1 a
 INNER JOIN  sc-bigquery-product-tools.penny_gauge_multi_region_us.pod_owners b
 ON a.pod = b.current_pod_name
 WHERE a.team_name IS NULL 
