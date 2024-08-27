@@ -13,7 +13,7 @@ FROM (WITH t1 AS (SELECT DATE(creation_time, "Asia/Kolkata") AS date, job_id, pr
           OR starts_with(job_id, 'job_')
           OR (i.user_email LIKE "%metabase%" OR i.user_email LIKE "%locale%" OR i.user_email LIKE "%redash%")) THEN "bi_tool"
     WHEN (i.user_email LIKE "%bigquerydatatransfer%") THEN "data_transfer"
-    WHEN ((job_id LIKE "%scheduled%" AND job_id NOT LIKE "%dataconnector%") ) THEN "scheduled_queries"
+    WHEN ((job_id LIKE "%scheduled%" AND job_id NOT LIKE "%dataconnector%") OR parent_job_id LIKE "%scheduled%" ) THEN "scheduled_queries"
     WHEN (job_id LIKE "%dataconnector%") THEN "gsheets_data_connector"
     WHEN (job_id LIKE "%beam%") THEN "bq_dataflow"
     WHEN ((job_id LIKE "%bquxjob%") OR (job_id LIKE "%script%" AND statement_type IN ('INSERT', 'UPDATE', 'DELETE', 'CREATE_TABLE_AS_SELECT') AND user_email NOT LIKE "%gservice%")) THEN "adhoc_bq_console"
