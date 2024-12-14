@@ -1,3 +1,5 @@
+-- Pricing Buckets
+
 With master_data as
 (SELECT project.id as project_id,
 date(usage_start_time) as date,
