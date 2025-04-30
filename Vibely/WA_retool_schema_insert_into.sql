@@ -1,4 +1,6 @@
 -- WARNING!!! date should be in timestamp() type but without UTC part
+CREATE TABLE `maximal-furnace-783.vibely_analytics.crmVibelyAdhocRetoolWA_feed_down_20Apr`
+  LIKE `maximal-furnace-783.vibely_analytics.crmDataWithTemplate`;
 
 INSERT INTO `maximal-furnace-783.vibely_analytics.crmVibelyAdhocRetoolWA_feed_down_20Apr`
 
