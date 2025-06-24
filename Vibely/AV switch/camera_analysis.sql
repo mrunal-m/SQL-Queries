@@ -1,4 +1,4 @@
---camera analysis
+--camera analysis --adding schedule
 WITH av_base AS (SELECT DISTINCT  SUBSTRING(av.userId, 2) userId, callId, action, screen, mediaType, avSwitchEligibleId, avSwitchReqId, requestId,
 cameraPermissionPresent, moderationPermissionRequired
 FROM `maximal-furnace-783.vibely_analytics.call_av_switch_event` av 
