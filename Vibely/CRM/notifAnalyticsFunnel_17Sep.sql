@@ -14,7 +14,8 @@ with sent as (
   group by 1,2)
   UNION ALL
   (select date(date) date,
-  'realtime' cohort, 
+  CASE WHEN LOWER(affinity) = 'video' THEN 'realtimeVideo'
+  ELSE 'realtime' END cohort, 
   count(distinct userID) as users 
   from `maximal-furnace-783.vibely_analytics.crmNotificationsRealtimeWithTemplate`
   where date(date) between start_date() and end_date()
