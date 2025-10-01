@@ -92,4 +92,6 @@ LEFT JOIN t2 ON t1.communityNotifId = t2.communityNotifId
 LEFT JOIN t3 ON t2.communityNotifId = t3.communityNotifId
 LEFT JOIN ho ON t3.id = ho.id
 LEFT JOIN all_paid_calls ap ON SAFE_CAST(ho.userId AS STRING) = ap.user_Id AND ho.sessionId = ap.sessionId
+WHERE t1.dt IS NOT NULL
 GROUP BY ALL
+ORDER BY 1, 2
