@@ -1,3 +1,4 @@
+INSERT INTO `maximal-furnace-783.askk_analytics.crmOnboardingGenericBase`
 WITH splash AS (
 SELECT DISTINCT SAFE_CAST(_eventMeta.userProperties.userId AS STRING) userId, _eventMeta.processingProperties.tenant tenant, _eventMeta.appProperties.clientType clientType, _eventMeta.appProperties.appVersion appV FROM `maximal-furnace-783.askk_analytics.splash_screen_open`
 WHERE DATE(time, "Asia/Kolkata") >= "2025-12-01"
@@ -22,3 +23,8 @@ ELSE NULL END as state,
 FROM splash LEFT JOIN user On splash.userId = user.userId
 LEFT JOIN call10 On splash.userId = call10.userId
 ORDER BY 1
+;
+
+CREATE OR REPLACE TABLE `maximal-furnace-783.askk_analytics.crmNotificationTemplates` 
+AS SELECT * FROM `maximal-furnace-783.askk_analytics.crmNotificationTemplatesSheet`;
+
