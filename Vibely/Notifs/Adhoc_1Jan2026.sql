@@ -2,12 +2,18 @@ CREATE OR REPLACE TABLE `maximal-furnace-783.vibely_analytics.crmVibelyAdhocReto
 AS (
 with a as (
 SELECT distinct SAFE_CAST(a.distinct_id AS STRING) userId, b.phoneNo, b.name userName, b.language,
- 'https://cdn-sc-g.sharechat.com/33d5318_1c8/20b55d35_1759326008612_sc.png' thumbnailUrl, 
-'Fresh year. Fresh voices 💖' title, 'Who are you calling first? ✨' text
+ 'https://cdn-sc-g.sharechat.com/33d5318_1c8/b60517a_1767100339312_sc.png' thumbnailUrl, 
+'New Year 2025! 💖' title, 'Wish your favourite friends! ✨' text
 from `maximal-furnace-783.vibely_analytics.home_opened` a
 INNER JOIN `maximal-furnace-783.sc_analytics.user`b ON
 a.distinct_id = SAFE_CAST(b.id AS INT64)
 WHERE date(a.time, "Asia/Kolkata") >= "2025-10-01" AND b.tenant = 'fz'
+AND b.id NOT IN (select distinct source_user_id from `maximal-furnace-783.sc_analytics.chatroom_transaction_ledger`
+where date(time,'Asia/Kolkata') >= '2025-10-01' AND source_currency = "COIN"
+           AND target_currency = "GEM"
+           AND operation_type = "TRANSFER"
+           AND entity in ('CONSULTATION_GIFTING', 'FZ_CONSULTATION_GIFTING','VIDEO_CONSULTATION_GIFTING')
+)
 ),
 
 b as (select * from  `maximal-furnace-783.vibely_analytics.crmNotificationsWithTemplateFinal`
