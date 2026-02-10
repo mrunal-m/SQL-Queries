@@ -1,13 +1,15 @@
-CREATE OR REPLACE TABLE `maximal-furnace-783.vibely_analytics.crmVibelyAdhocRetool_Valenties_ChocDay1`
+CREATE OR REPLACE TABLE `maximal-furnace-783.vibely_analytics.crmVibelyAdhocRetool_Valenties_PromiseDay1`
 AS (
 with a as (
 SELECT distinct SAFE_CAST(a.distinct_id AS STRING) userId, b.phoneNo, b.name userName, b.language,
- 'https://cdn-sc-g.sharechat.com/33d5318_1c8/56a7239_1770384122941_sc.png' thumbnailUrl, 
-'Chocolate Day special 🍫' title, 'Celebrate with sweet new gifts' text
+ 'https://cdn-sc-g.sharechat.com/33d5318_1c8/d6ffee7_1770726988725_sc.png' thumbnailUrl, 
+'Pinky Promise? 🤝' title, 'To call, laugh, and share gifts!' text
 from `maximal-furnace-783.vibely_analytics.home_opened` a
 INNER JOIN `maximal-furnace-783.sc_analytics.user`b ON
 a.distinct_id = SAFE_CAST(b.id AS INT64)
 WHERE date(a.time, "Asia/Kolkata") >= "2025-12-01" AND b.tenant = 'fz'
+AND SAFE_CAST(a.distinct_id AS STRING) NOT IN (SELECT DISTINCT consultant_user_id  FROM`maximal-furnace-783.sc_analytics.consultant` 
+WHERE DATE(time, "Asia/Kolkata") >= "2025-12-01" AND tenant = 'fz')
 ),
 
 b as (select * from  `maximal-furnace-783.vibely_analytics.crmNotificationsWithTemplateFinal`
@@ -22,7 +24,7 @@ callsLifetime,
 notificationsSent,
 'feed' as target,
 'adHoc' cohort,
-'AdhocRetool_Valenties_ChocDay1' as templateId,
+'AdhocRetool_Valenties_PromiseDay1' as templateId,
 a.title, 
 a.text, 
 a.thumbnailUrl, 
